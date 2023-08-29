@@ -207,6 +207,13 @@ DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
 #     double quotes to make sure that they get re-expanded; and
 #   * put everything else in single quotes, so that it's not re-expanded.
 
+gq http://localhost:8080/graphql -q 'query {getAllUsers {email,username  }}'
+
+gq http://localhost:9999/graphql -q 'query Query {getAllUsers {email,username}}'
+
+
+
+
 set -- \
         "-Dorg.gradle.appname=$APP_BASE_NAME" \
         -classpath "$CLASSPATH" \

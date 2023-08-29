@@ -1,0 +1,21 @@
+type Query {
+    getAllUsers: [User]
+}
+
+type Mutation{
+    editUser(user: UserInput): User
+}
+
+type Subscription {
+    userEditedNotification: String
+}
+
+type User {
+    username: String,
+    email: String,
+}
+
+input UserInput {
+    username: String,
+    email: String,
+}

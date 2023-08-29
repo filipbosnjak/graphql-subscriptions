@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Apollo server ###
+src/apollo-server/node_modules
