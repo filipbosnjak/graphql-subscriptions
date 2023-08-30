@@ -1,5 +1,6 @@
 package com.example.graphqlsubscriptions.datafetcher
 
+import com.example.graphqlsubscriptions.publishers.UserPublisher
 import com.netflix.dgs.codegen.generated.types.User
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsQuery
@@ -9,10 +10,13 @@ import java.time.Duration
 import org.reactivestreams.Publisher;
 
 @DgsComponent
-class UserDatafetcher {
+class UserDatafetcher(
+    private val userPublisher: UserPublisher
+) {
 
     @DgsQuery
     fun getAllUsers(): List<User> {
+        userPublisher.publish("getting all users")
         return listOf(
             User("asdf", "asda"),
             User("asasdfdf", "aserteda"),
@@ -22,6 +26,6 @@ class UserDatafetcher {
 
     @DgsSubscription
     fun userEditedNotification(): Publisher<String> {
-        return Flux.interval(Duration.ofSeconds(1)).map{ t -> "$t" }
+        return userPublisher.queryTriggered()
     }
 }

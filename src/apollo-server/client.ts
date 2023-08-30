@@ -40,7 +40,7 @@ import {createClient } from "graphqurl"
                 // handle event
             },
             (error) => {
-                console.log('Error: ', error);
+                console.log('Errasor: ', error);
                 // handle error
             }
         )
